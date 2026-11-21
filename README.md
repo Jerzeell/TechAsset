@@ -4,6 +4,14 @@ Sistema web de gestión del inventario tecnológico, solicitudes, préstamos y d
 
 **Autor:** Oyola Gutierrez Jerzeell Juniors.
 
+## Enlaces de entrega
+
+- [Demostración visual del software](https://jerzeell.github.io/TechAsset/demo/): portal y pantallas navegables por rol con datos ficticios, de solo lectura y sin servidor.
+- [Documentación e instrucciones](https://jerzeell.github.io/TechAsset/): esta guía publicada con GitHub Pages.
+- [Código fuente](https://github.com/Jerzeell/TechAsset): frontend, API, migraciones y pruebas.
+
+La demostración no valida contraseñas ni escribe en la base de datos. Para ejecutar las operaciones reales, seguir las instrucciones de instalación que aparecen debajo.
+
 ## Funciones
 
 - Portal público e inicio de sesión.
@@ -101,3 +109,7 @@ python tests/api_integration.py
 ## Configuración de la copia publicada
 
 El código publicado exige definir la conexión y el secreto JWT mediante variables de entorno, en lugar de incluir claves locales en el código. El proyecto original del Escritorio y el informe Word se conservan. Este repositorio publica el software; no despliega una aplicación accesible por Internet.
+
+## Revisión del 21 de noviembre de 2026
+
+Se añadieron 18 comprobaciones esenciales con entradas no sensibles, resultados esperados, resultados observados e identificadores en tests/review_20261121_results.json. El comprobador está en tests/review_20261121.py y las consultas SQL en tests/report_comparison.sql. Se ejecutaron en TechAssetReview_20261121_R2; no en la base principal. La igualdad de reportes se comprobó únicamente para ese conjunto de datos. Para repetirlas se necesita una base nueva de ensayo, la API local en el puerto 5103 y las variables de conexión/contraseñas de ensayo definidas localmente; el comprobador modifica esas cuentas y guarda su salida en tests/review-output/.

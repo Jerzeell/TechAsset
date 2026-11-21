@@ -1,0 +1,308 @@
+{
+  "date": "2026-11-21T06:44:14.301324+00:00",
+  "db": "TechAssetReview_20261121_R2",
+  "checks": [
+    {
+      "case": "N21-01",
+      "action": "Registrar usuario",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "correo": "qa.n21@example.invalid",
+        "rol": "Colaborador"
+      },
+      "expected": 201,
+      "observed": 201,
+      "entity": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+      "result": "OK"
+    },
+    {
+      "case": "N21-02",
+      "action": "Persistencia del usuario",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "userId": "2e83a5c0-2671-4324-ba7d-7a629076d966"
+      },
+      "expected": {
+        "id": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+        "correo": "qa.n21@example.invalid",
+        "rol": "Colaborador",
+        "pendiente": true
+      },
+      "observed": {
+        "id": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+        "correo": "qa.n21@example.invalid",
+        "rol": "Colaborador",
+        "pendiente": true
+      },
+      "entity": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+      "result": "OK"
+    },
+    {
+      "case": "N21-03",
+      "action": "Alta rechazada por falta de mayúscula",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "omisión": "mayúscula",
+        "rol": "Colaborador"
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-04",
+      "action": "Alta rechazada por falta de minúscula",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "omisión": "minúscula",
+        "rol": "Colaborador"
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-05",
+      "action": "Alta rechazada por falta de número",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "omisión": "número",
+        "rol": "Colaborador"
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-06",
+      "action": "Alta rechazada por falta de símbolo",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "omisión": "símbolo",
+        "rol": "Colaborador"
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-07",
+      "action": "Registrar equipo",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "codigoPatrimonial": "QA-N21-001",
+        "nombre": "Laptop de prueba N21",
+        "categoria": "Laptops",
+        "marca": "Ensayo",
+        "estado": "Disponible"
+      },
+      "expected": 201,
+      "observed": 201,
+      "entity": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+      "result": "OK"
+    },
+    {
+      "case": "N21-08",
+      "action": "Registrar préstamo",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "usuarioId": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+        "equipoId": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+        "fechaPrestamo": "2026-11-21T06:34:14.301324+00:00",
+        "observacion": "Entrega de ensayo N21 con cargador."
+      },
+      "expected": 201,
+      "observed": 201,
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-09",
+      "action": "Rechazar segundo préstamo activo",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "equipoId": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3"
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-10",
+      "action": "Rechazar devolución sin observaciones",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "loanId": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+        "observacion": ""
+      },
+      "expected": 400,
+      "observed": 400,
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-11",
+      "action": "Registrar devolución",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "loanId": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+        "estadoEquipo": "Disponible"
+      },
+      "expected": 200,
+      "observed": 200,
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-12",
+      "action": "Persistencia de préstamo y devolución",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "loanId": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9"
+      },
+      "expected": {
+        "id": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+        "usuario": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+        "equipo": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+        "entrega": "Entrega de ensayo N21 con cargador.",
+        "devolucion": "Recepción conforme N21.",
+        "devuelto": true
+      },
+      "observed": {
+        "id": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+        "usuario": "2e83a5c0-2671-4324-ba7d-7a629076d966",
+        "equipo": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+        "entrega": "Entrega de ensayo N21 con cargador.",
+        "devolucion": "Recepción conforme N21.",
+        "devuelto": true
+      },
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-13",
+      "action": "Consultar inventario y reconocer equipo",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "codigo": "QA-N21-001"
+      },
+      "expected": true,
+      "observed": true,
+      "entity": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+      "result": "OK"
+    },
+    {
+      "case": "N21-14",
+      "action": "Consultar historial propio",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "usuarioId": "2e83a5c0-2671-4324-ba7d-7a629076d966"
+      },
+      "expected": true,
+      "observed": true,
+      "entity": "412ad7f0-2461-4bd4-b8a5-88aa253ebcd9",
+      "result": "OK"
+    },
+    {
+      "case": "N21-15",
+      "action": "Colaborador sin acceso a usuarios",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "rol": "Colaborador"
+      },
+      "expected": 403,
+      "observed": 403,
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-16",
+      "action": "Dashboard frente a SQL independiente",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "SQL": "conteos y agrupación directa"
+      },
+      "expected": {
+        "totalEquipments": 7,
+        "availableEquipments": 5,
+        "loanedEquipments": 0,
+        "maintenanceEquipments": 1,
+        "decommissionedEquipments": 1,
+        "totalLoans": 2,
+        "areaConMayorUso": "QA N21",
+        "areaConMayorUsoCantidad": 2
+      },
+      "observed": {
+        "totalEquipments": 7,
+        "availableEquipments": 5,
+        "loanedEquipments": 0,
+        "maintenanceEquipments": 1,
+        "decommissionedEquipments": 1,
+        "totalLoans": 2,
+        "areaConMayorUso": "QA N21",
+        "areaConMayorUsoCantidad": 2
+      },
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-17",
+      "action": "Préstamos por área frente a SQL",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "area": "QA N21"
+      },
+      "expected": [
+        {
+          "area": "QA N21",
+          "totalLoans": 2,
+          "activeLoans": 0
+        }
+      ],
+      "observed": [
+        {
+          "area": "QA N21",
+          "totalLoans": 2,
+          "activeLoans": 0
+        }
+      ],
+      "entity": null,
+      "result": "OK"
+    },
+    {
+      "case": "N21-18",
+      "action": "Equipos más utilizados frente a SQL",
+      "db": "TechAssetReview_20261121_R2",
+      "input": {
+        "codigo": "QA-N21-001"
+      },
+      "expected": [
+        {
+          "equipmentId": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+          "nombre": "Laptop de prueba N21",
+          "codigoPatrimonial": "QA-N21-001",
+          "categoria": "Laptops",
+          "marca": "Ensayo",
+          "timesUsed": 2
+        }
+      ],
+      "observed": [
+        {
+          "equipmentId": "2e735171-fe45-41e2-bf5a-b7f544a7b1d3",
+          "nombre": "Laptop de prueba N21",
+          "codigoPatrimonial": "QA-N21-001",
+          "categoria": "Laptops",
+          "marca": "Ensayo",
+          "timesUsed": 2
+        }
+      ],
+      "entity": null,
+      "result": "OK"
+    }
+  ]
+}

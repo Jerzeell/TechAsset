@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import {
   BrowserRouter,
+  HashRouter,
   Routes,
   Route,
   Navigate,
@@ -19,6 +20,9 @@ import UsersPage from "./pages/UsersPage";
 import MovementsPage from "./pages/MovementsPage";
 import UiProvider from "./components/UiProvider";
 import { getSessionUser, isSessionExpired } from "./lib/session";
+import { IS_DEMO } from './lib/demo';
+import DemoAccess, { DemoBanner } from './components/DemoAccess';
+const Router = IS_DEMO ? HashRouter : BrowserRouter;
 function PrivateArea() {
   const user = getSessionUser(),
     navigate = useNavigate(),
@@ -70,10 +74,11 @@ function AdminArea() {
 export default function App() {
   return (
     <UiProvider>
-      <BrowserRouter>
+      <Router>
+        {IS_DEMO && <DemoBanner />}
         <Routes>
           <Route path="/" element={<PortalPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={IS_DEMO ? <DemoAccess /> : <LoginPage />} />
           <Route element={<PrivateArea />}>
             <Route
               path="/cambiar-contrasena"
@@ -97,7 +102,7 @@ export default function App() {
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-      </BrowserRouter>
+      </Router>
     </UiProvider>
   );
 }

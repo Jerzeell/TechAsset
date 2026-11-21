@@ -1,3 +1,4 @@
+import { IS_DEMO, demoAdapter } from '../lib/demo';
 import axios from "axios";
 
 // Vite environments can read VITE_API_URL.
@@ -64,4 +65,5 @@ api.interceptors.response.use(
   },
 );
 
+if (IS_DEMO) api.defaults.adapter = demoAdapter;
 export default api;

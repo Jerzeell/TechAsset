@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "build:demo": "tsc --noEmit && vite build --mode demo --base=/TechAsset/demo/ --outDir ../../demo --emptyOutDir"
   },
   "dependencies": {
     "react": "^18.2.0",

@@ -1,3 +1,4 @@
+import { IS_DEMO, leaveDemo } from '../lib/demo';
 import React, { useEffect, useState } from "react";
 import {
   Link,
@@ -129,6 +130,7 @@ export default function Layout() {
         label: "Cerrar sesión",
       })
     ) {
+      if (IS_DEMO) leaveDemo();
       localStorage.removeItem("techasset_token");
       localStorage.removeItem("techasset_user");
       navigate("/login", { replace: true });
@@ -253,7 +255,7 @@ export default function Layout() {
               {connected === null
                 ? "Conectando"
                 : connected
-                  ? "En línea"
+                  ? (IS_DEMO ? "Datos de ejemplo" : "En línea")
                   : "Sin conexión"}
             </div>
             <div className="topbar-divider" />

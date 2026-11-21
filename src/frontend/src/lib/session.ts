@@ -1,5 +1,7 @@
+import { IS_DEMO, demoUser } from './demo';
 import { User } from "./models";
 export function getSessionUser(): User | null {
+  if (IS_DEMO) return demoUser();
   try {
     const user = JSON.parse(localStorage.getItem("techasset_user") || "null");
     if (!user?.id || !user?.rol || !localStorage.getItem("techasset_token"))
@@ -10,6 +12,7 @@ export function getSessionUser(): User | null {
   }
 }
 export function isSessionExpired() {
+  if (IS_DEMO) return !demoUser();
   try {
     const token = localStorage.getItem("techasset_token");
     if (!token) return true;

@@ -1,6 +1,7 @@
 import React, { useEffect, useId, useRef, useState } from "react";
 import Icon from "./Icon";
 import { PasswordControl } from "./PasswordControl";
+import { IS_DEMO } from '../lib/demo';
 export function Button({
   children,
   variant = "primary",
@@ -218,7 +219,8 @@ export function SaveButton({
     <Button
       type="submit"
       variant="success"
-      disabled={busy}
+      disabled={busy || IS_DEMO}
+      title={IS_DEMO ? 'Demontración de solo lectura: guardado deshabilitado' : undefined}
       icon={busy ? "refresh" : "check"}
       className={busy ? "is-loading" : ""}
     >

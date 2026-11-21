@@ -197,7 +197,7 @@ export default function PortalPage() {
       </section>
       <section id="proceso" className="premium-section premium-workflow">
         <div className="workflow-art">
-          <img src="/assets/techasset-hero.webp" alt="" loading="lazy" />
+          <img src={`${import.meta.env.BASE_URL}assets/techasset-hero.webp`} alt="" loading="lazy" />
           <div>
             <BrandMark size={30} />
             <span>

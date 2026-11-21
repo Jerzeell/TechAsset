@@ -1,3 +1,4 @@
+import { IS_DEMO, demoUser } from './demo';
 export type User = {
   id: string;
   nombres: string;
@@ -69,6 +70,7 @@ export const equipmentStates = [
 export const roleLabel = (role: string) =>
   role === "ResponsableTecnologia" ? "Responsable de Tecnología" : role;
 export function getUser(): User | null {
+  if (IS_DEMO) return demoUser();
   try {
     return JSON.parse(localStorage.getItem("techasset_user") || "null");
   } catch {
