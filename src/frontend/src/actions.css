@@ -1,0 +1,44 @@
+/* Action meanings stay consistent in light and dark themes. */
+.btn-success {
+  color: #fff;
+  background: #176747;
+  border-color: #176747;
+}
+.btn-success:hover:not(:disabled) {
+  color: #fff;
+  background: #105036;
+  border-color: #105036;
+}
+.btn-warning {
+  color: var(--amber);
+  background: var(--amber-bg);
+  border-color: var(--amber);
+}
+.btn-warning:hover:not(:disabled) { box-shadow: inset 0 0 0 1px var(--amber); }
+.btn-danger, .btn-danger:hover:not(:disabled) { border-color: transparent; }
+.row-actions .btn-ghost:not(.danger-text) {
+  color: var(--link);
+  background: var(--tint);
+  border-color: var(--border);
+}
+.row-actions .btn-ghost:not(.danger-text):hover:not(:disabled) {
+  border-color: var(--link);
+}
+.btn.danger-text, .icon-button.action-danger {
+  color: var(--red);
+  background: var(--red-bg);
+  border-color: var(--red);
+}
+.btn.danger-text:hover:not(:disabled), .icon-button.action-danger:hover:not(:disabled) {
+  color: var(--red);
+  background: var(--red-bg);
+  box-shadow: inset 0 0 0 1px var(--red);
+}
+.btn:disabled, .icon-button:disabled, .btn.danger-text:disabled {
+  opacity: 1;
+  color: var(--muted) !important;
+  background: var(--soft);
+  border-color: var(--border);
+  box-shadow: none;
+  cursor: not-allowed;
+}

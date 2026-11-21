@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "TechAsset API (.NET 10)",
+      "type": "coreclr",
+      "request": "launch",
+      "preLaunchTask": "Compilar backend",
+      "program": "${workspaceFolder}/src/backend/Api/bin/Debug/net10.0/TechAsset.Api.dll",
+      "cwd": "${workspaceFolder}/src/backend/Api",
+      "env": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ASPNETCORE_URLS": "http://127.0.0.1:5001"
+      },
+      "serverReadyAction": {
+        "action": "openExternally",
+        "pattern": "Now listening on:\\s+(https?://\\S+)",
+        "uriFormat": "%s/swagger"
+      }
+    }
+  ]
+}

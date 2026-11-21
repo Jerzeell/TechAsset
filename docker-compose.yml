@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD en .env}
+      POSTGRES_DB: TechAssetDb
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d TechAssetDb"]
+      interval: 5s
+      timeout: 3s
+      retries: 15
+  api:
+    build: ./src/backend
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ConnectionStrings__Default: Host=db;Port=5432;Database=TechAssetDb;Username=postgres;Password=${POSTGRES_PASSWORD:?Configure POSTGRES_PASSWORD en .env}
+      Jwt__Key: ${JWT_KEY:?Configure JWT_KEY en .env}
+      Jwt__Issuer: TechAssetIssuer
+      Seed__AdminPassword: ${SEED_ADMIN_PASSWORD:?Configure SEED_ADMIN_PASSWORD en .env}
+      Seed__TechPassword: ${SEED_TECH_PASSWORD:?Configure SEED_TECH_PASSWORD en .env}
+      Seed__ColabPassword: ${SEED_COLAB_PASSWORD:?Configure SEED_COLAB_PASSWORD en .env}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:5001:8080"
+  frontend:
+    build: ./src/frontend
+    depends_on:
+      - api
+    ports:
+      - "127.0.0.1:3000:80"
+volumes:
+  pgdata:
